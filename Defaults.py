@@ -1,13 +1,17 @@
 # Default.py
 # stores all the default values
 
-class Defaults:
+if __name__ == "__main__":
+    import os
+    raise ImportError("Do not import {0}".format(os.path.basename(__file__)))
+else:
+    class Defaults:
 
-    # Default board size
-    width = 15
-    height = 15
+        # Default board size
+        width = 15
+        height = 15
 
-    #default number of letters given to each player
-    letters = 7
+        #default number of letters given to each player
+        letters = 7
 
-    players = 2
+        players = 2
