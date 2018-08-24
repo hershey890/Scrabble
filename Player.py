@@ -1,5 +1,7 @@
 # Module Player.py
 # Receives player input
+# integrate user mouse input eventually with PyMouse
+    # https://stackoverflow.com/questions/25848951/python-get-mouse-x-y-position-on-click
 
 if __name__ == "__main__":
     import os
@@ -14,4 +16,3 @@ else:
 
         def get_user_word(self) -> str:
             pass
-

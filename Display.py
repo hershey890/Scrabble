@@ -1,10 +1,12 @@
 # Module Display.py
 # Displays the scrabble board
+# Eventually integrate tinkerpy or whatever to build a gui
 
 
 import os
 
 if __name__ == "__main__":
+
     print("Do not run {0}".format(os.path.basename(__file__)))
     raise ImportError
 else:
@@ -43,7 +45,6 @@ else:
             .----)   |   |  `----.|  |\  \----./  _____  \  |  |_)  | |  |_)  | |  `----.|  |____ 
             |_______/     \______|| _| `._____/__/     \__\ |______/  |______/  |_______||_______|
             """.center(os.get_terminal_size().columns))
-
             print("\n\n\nPress Enter the number of players to begin (must be 1-3)".center(os.get_terminal_size().columns))
 
 
@@ -73,4 +74,3 @@ else:
         def display_prompt(self, prompt: str):
             if not isinstance(prompt, str):
                 raise TypeError
-

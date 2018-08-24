@@ -3,7 +3,7 @@
 
 if __name__ == "__main__":
     import os
-    raise ImportError("Do not import {0}".format(os.path.basename(__file__)))
+    raise ImportError("Do not run {0}".format(os.path.basename(__file__)))
 else:
     class Defaults:
 
@@ -11,7 +11,7 @@ else:
         width = 15
         height = 15
 
-        #default number of letters given to each player
+        # default number of letters given to each player
         letters = 7
 
         players = 2
