@@ -4,5 +4,5 @@
 from Dictionary import Dictionary
 
 newDictionary = Dictionary()
-print(newDictionary.num_words)
-print(newDictionary.is_real_word("wop"))
+word = "word"  # input("Please enter a word\n")
+print("The word a real word:", newDictionary.is_real_word(word))

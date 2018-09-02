@@ -14,7 +14,6 @@ else:
 
         letters = ['_', '_', '_', '_', '_', '_', '_']
 
-
         def __init__(self, width: int, height: int):
             if not (isinstance(width, int) and isinstance(height, int)):
                 raise TypeError("Error: Not a integer")

@@ -9,8 +9,13 @@ if __name__ == "__main__":
     raise ImportError("Do not run {0}".format(os.path.basename(__file__)))
 else:
     from collections import defaultdict
+    from inspect import currentframe
 
-    def is_valid_word(line:str) -> bool: # causing issue, I think it is always returning false
+    def get_linenumber():
+        cf = currentframe()
+        return cf.f_back.f_lineno
+
+    def is_valid_word(line: str) -> bool:  # causing issue, I think it is always returning false
         for letter in line:
             if letter < 'a' or letter > 'z':
                 return False
@@ -72,7 +77,7 @@ else:
         elif letter == 'z':
             return 101
 
-    def hash_func(word:str, num_words:int) -> int:
+    def hash_func(word: str, num_words: int) -> int:
         hash_key = 1
         for letter in word:
             hash_key *= to_prime(letter)
@@ -92,20 +97,38 @@ else:
                     line = line.strip()
                     if is_valid_word(line):
                         self.num_words += 1
+                del line
 
-                # Hash the words
+                # resets the file pointer to the start of the file
+                dictionary.seek(0)
                 self.dict_list = defaultdict(list)
                 for line in dictionary:
-                    line = line.strip() # removes trailing whitespace
+                    line = line.strip()  # removes trailing whitespace
                     if is_valid_word(line):
                         key = hash_func(line, self.num_words)
                         self.dict_list[key].append(line)
 
-        def is_real_word(self, word:str) -> bool:
-            word = word.lower().strip()
-            if is_valid_word(word):
-                key = hash_func(word, self.num_words)
+        def is_real_word(self, input_word: str) -> bool:
+            input_word = input_word.lower().strip()
+            if is_valid_word(input_word):
+                key = hash_func(input_word, self.num_words)
                 for dict_word in self.dict_list[key]:
-                    if word == dict_word:
+                    if dict_word == input_word:
                         return True
-            return False
+                return False
+
+        # --------------------- Testing functions --------------------- #
+        def get_word(self, index: int):
+            with open(self.file, 'r') as dictionary:
+                line = ""
+                i = 0
+                for line in dictionary:
+                    if not is_valid_word(line.strip()):
+                        continue
+                    if i == index:
+                        break
+                    i += 1
+                return line.strip()
+
+        def get_word2(self, index: int):
+            return self.dict_list[index]
