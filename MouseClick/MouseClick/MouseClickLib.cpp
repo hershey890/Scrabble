@@ -1,6 +1,6 @@
+#include "MouseClickLib.h"
 #include <windowsx.h>
 #include <Windows.h>
-#include "MouseClickLib.h"
 
 /*  Macros: Define the x and y coordinates of the mouse pointer */
 //int xPos = GET_X_LPARAM(LPARAM);
@@ -18,6 +18,17 @@ MouseClick::MouseClick(void) {
 	/* Set other structure members */
 	RegisterClass(&wc);
 }
+
+static PyObject MouseClick::*MouseClick_system(PyObject *self, PyObject *args) {
+	const char *command;
+	int sts;
+
+	if (!PyArg_ParseTuple(args, "s", &command))
+		return NULL;
+	sts = system(command);
+	return Py_BuildValue("i", sts);
+}
+
 
 int MouseClick::xPos(void) {
 	/* Gives cursor position relative to screen */
