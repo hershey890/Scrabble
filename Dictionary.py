@@ -118,7 +118,7 @@ else:
                 return False
 
         # --------------------- Testing functions --------------------- #
-        def get_word(self, index: int):
+        def get_word(self, index: int) -> str:
             with open(self.file, 'r') as dictionary:
                 line = ""
                 i = 0
